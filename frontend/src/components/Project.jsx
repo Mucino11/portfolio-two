@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const MyProject = ({ projects }) => {
+const Project = () => {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    // Fetch the projects data from the backend running on localhost:3000
+    fetch("http://localhost:3000/projects") // Update the path to match your backend
+      .then((response) => response.json())
+      .then((data) => setProjects(data.projects))
+      .catch((error) => console.error("Error fetching projects:", error));
+  }, []);
+
   return (
     <section>
       <h1 className="project-section-h1">My Projects</h1>
       <section className="grid-project-section">
-        {/* Render project cards dynamically */}
         {projects.map((project) => (
           <article className="project-card" key={project.name}>
             <h2 className="project-h2">Name: {project.name}</h2>
@@ -26,4 +35,4 @@ const MyProject = ({ projects }) => {
   );
 };
 
-export default MyProject;
+export default Project;

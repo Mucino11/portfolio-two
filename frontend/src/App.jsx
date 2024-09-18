@@ -7,8 +7,8 @@ function App() {
     <>
       <h1>HELLO MUSA</h1>
       <NavigationBar />
-      <NavigationBar />
       <MyProject />
+      <NavigationBar />
     </>
   );
 }
